@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-primary: #4f46e5;
+  --color-brand-secondary: #10b981;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #111827;
+  background-color: #fafafa;
+
+  --bike-frame: #475569;
+  --bike-accent: #cbd5e1;
+  --rider-main: #4f46e5;
+  --rider-accent: #818cf8;
+  --rider-leg: #6366f1;
+  --rider-leg-far: #a5b4fc;
+  --wind-streak: #cbd5e1;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    color: #f3f4f6;
+    background-color: #0f172a;
+
+    --bike-frame: #94a3b8;
+    --bike-accent: #475569;
+    --rider-main: #818cf8;
+    --rider-accent: #a5b4fc;
+    --rider-leg: #6366f1;
+    --rider-leg-far: #4338ca;
+    --wind-streak: #475569;
+  }
+}
+
+:root.dark {
+  color: #f3f4f6;
+  background-color: #0f172a;
+
+  --bike-frame: #94a3b8;
+  --bike-accent: #475569;
+  --rider-main: #818cf8;
+  --rider-accent: #a5b4fc;
+  --rider-leg: #6366f1;
+  --rider-leg-far: #4338ca;
+  --wind-streak: #475569;
+}
+
+
+
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  width: 100%;
+}
+
+@media print {
+  @page {
+    margin: 0.8cm 1cm;
+    size: A4;
+  }
+
+  body {
+    background: transparent !important;
+    background-color: white !important;
+    font-size: 9.5pt !important;
+    color: #000 !important;
+    line-height: 1.25 !important;
+  }
+
+  main {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  section {
+    margin-bottom: 2rem !important;
+  }
+
+  article,
+  .print-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Hide background patterns in print even if they have inline display */
+  .fixed.inset-0[class*="print:hidden"] {
+    display: none !important;
+  }
+
+  h1 {
+    font-size: 22pt !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  h2 {
+    font-size: 14pt !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  h3 {
+    font-size: 12pt !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  h4 {
+    font-size: 11pt !important;
+  }
+
+  p,
+  li {
+    font-size: 9.5pt !important;
+    line-height: 1.3 !important;
+  }
+
+  .print-no-break {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .shadow-xl,
+  .shadow-lg,
+  .shadow-2xl,
+  .shadow-sm {
+    box-shadow: none !important;
+    border: 1px solid #eee !important;
+  }
+
+  .rounded-3xl,
+  .rounded-\[3rem\],
+  .rounded-\[2\.5rem\],
+  .rounded-\[2rem\] {
+    border-radius: 0.75rem !important;
+  }
+
+  /* Prevent text orphans */
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Ensure background colors/borders are printed if needed */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+@keyframes wheel-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-wheel-spin {
+  animation: wheel-spin 0.5s linear infinite;
+}
+
+@keyframes heavy-breathing {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1.0);
+  }
+
+  50% {
+    transform: translateY(-1px) scale(1.02);
+  }
+}
+
+.animate-heavy-breathing {
+  animation: heavy-breathing 0.4s ease-in-out infinite;
+  transform-origin: 42px 44px;
+  /* Hip/Seat area */
+}
+
+
+@keyframes pedal-leg {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-pedal-leg {
+  animation: pedal-leg 0.4s ease-in-out infinite;
+}
+
+.animate-pedal-leg-delayed {
+  animation: pedal-leg 0.4s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
