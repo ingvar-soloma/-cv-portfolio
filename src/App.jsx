@@ -237,7 +237,7 @@ export default function App() {
 
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <a href="#" className="flex items-center gap-3 transition-transform hover:scale-105 active:scale-95" data-track="nav-home">
-            <img src={cvData.header.favicon} alt="Logo" className="h-8 w-8 object-cover rounded shadow-sm border border-gray-100 dark:border-slate-800" />
+            <img src={cvData.header.favicon} alt="Ihor Solomianyi - Senior Software Engineer Logo" className="h-8 w-8 object-cover rounded shadow-sm border border-gray-100 dark:border-slate-800" />
             <span className="font-bold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-100 dark:to-gray-400 border-l border-gray-300 dark:border-gray-700 pl-3">IS.dev</span>
           </a>
           <div className="flex items-center gap-4 sm:gap-6">
