@@ -139,9 +139,9 @@ const cvData = {
   ],
   projects: [
     {
-      title: "AI Cognitive Profiling & RAG System",
+      title: "NP42 | Neuro Profile",
       desc: "Interactive tool mapping engineering cognitive styles. Integrating a RAG pipeline to deliver personalized, context-aware workflow recommendations. Utilized within the team to optimize communication and task delegation based on individual thinking patterns.",
-      url: "https://cognitiveprofile.ingvarsoloma.dev/",
+      url: "https://np42.dev/",
       tags: ["AI", "React", "RAG Pipelines", "Team Analytics"]
     },
     {
@@ -242,7 +242,7 @@ export default function App() {
           </a>
           <div className="flex items-center gap-4 sm:gap-6">
             <div className="relative group/settings">
-              <button 
+              <button
                 onClick={() => setShowSettings(!showSettings)}
                 className={`flex items-center gap-1 p-2 rounded-xl transition-all ${showSettings ? 'bg-gray-100 dark:bg-slate-800 text-indigo-600' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-800/50'}`}
               >
@@ -256,9 +256,9 @@ export default function App() {
                   <div className="absolute top-12 right-0 w-64 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-800 p-2 z-10 animate-in fade-in zoom-in-95 duration-200">
                     <div className="p-3">
                       <h4 className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-3 px-2">Preferences</h4>
-                      
+
                       <div className="space-y-1">
-                        <button 
+                        <button
                           onClick={() => setIsDarkMode(!isDarkMode)}
                           className="w-full flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors group"
                         >
@@ -273,7 +273,7 @@ export default function App() {
                           </div>
                         </button>
 
-                        <button 
+                        <button
                           onClick={() => setIsBicyclistVisible(!isBicyclistVisible)}
                           className="w-full flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors group"
                         >
@@ -461,116 +461,116 @@ export default function App() {
               </h3>
             </div>
 
-              <div className="space-y-12 print:space-y-4 relative">
-                <div className="absolute left-[20px] top-4 bottom-4 w-0.5 bg-gradient-to-b from-indigo-100 via-gray-100 to-transparent print:hidden"></div>
+            <div className="space-y-12 print:space-y-4 relative">
+              <div className="absolute left-[20px] top-4 bottom-4 w-0.5 bg-gradient-to-b from-indigo-100 via-gray-100 to-transparent print:hidden"></div>
 
-                {cvData.experience.map((job, idx) => (
-                  <article key={idx} className="relative pl-12 print:pl-0 group">
-                    <div className={`absolute left-0 top-1.5 h-10 w-10 rounded-xl flex items-center justify-center z-10 border-4 border-gray-50 dark:border-slate-800 transition-all duration-300 ${idx === 0 ? 'bg-indigo-600 dark:bg-indigo-500 text-white shadow-lg shadow-indigo-200 dark:shadow-none' : 'bg-white dark:bg-slate-900 text-gray-400 group-hover:bg-gray-50 dark:group-hover:bg-slate-800'} print:hidden`}>
-                      {idx === 0 ? <Rocket size={18} /> : <Briefcase size={18} />}
+              {cvData.experience.map((job, idx) => (
+                <article key={idx} className="relative pl-12 print:pl-0 group">
+                  <div className={`absolute left-0 top-1.5 h-10 w-10 rounded-xl flex items-center justify-center z-10 border-4 border-gray-50 dark:border-slate-800 transition-all duration-300 ${idx === 0 ? 'bg-indigo-600 dark:bg-indigo-500 text-white shadow-lg shadow-indigo-200 dark:shadow-none' : 'bg-white dark:bg-slate-900 text-gray-400 group-hover:bg-gray-50 dark:group-hover:bg-slate-800'} print:hidden`}>
+                    {idx === 0 ? <Rocket size={18} /> : <Briefcase size={18} />}
+                  </div>
+
+                  <header className="mb-6 print:mb-2">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-2 print:mb-1">
+                      <h4 className="text-2xl font-black text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors uppercase tracking-tight print:text-base">{job.role}</h4>
+                      <time className={`text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-full ${idx === 0 ? 'bg-indigo-600 dark:bg-indigo-500 text-white' : 'bg-gray-100 dark:bg-slate-800 text-gray-500'} print:bg-transparent print:text-gray-400 print:px-0 print:py-0`}>
+                        {job.date}
+                      </time>
                     </div>
+                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 font-bold text-sm print:text-xs">
+                      <span className="text-indigo-600 dark:text-indigo-400">{job.company}</span>
+                      <span className="opacity-30">•</span>
+                      <span>{job.location}</span>
+                    </div>
+                  </header>
 
-                    <header className="mb-6 print:mb-2">
-                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-2 print:mb-1">
-                        <h4 className="text-2xl font-black text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors uppercase tracking-tight print:text-base">{job.role}</h4>
-                        <time className={`text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-full ${idx === 0 ? 'bg-indigo-600 dark:bg-indigo-500 text-white' : 'bg-gray-100 dark:bg-slate-800 text-gray-500'} print:bg-transparent print:text-gray-400 print:px-0 print:py-0`}>
-                          {job.date}
-                        </time>
-                      </div>
-                      <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 font-bold text-sm print:text-xs">
-                        <span className="text-indigo-600 dark:text-indigo-400">{job.company}</span>
-                        <span className="opacity-30">•</span>
-                        <span>{job.location}</span>
-                      </div>
-                    </header>
+                  <ul className="space-y-4 print:space-y-1">
+                    {job.achievements.map((ach, i) => (
+                      <li key={i} className="flex gap-4 items-start text-gray-600 dark:text-gray-300 font-medium print:gap-2">
+                        <ChevronRight size={16} className="mt-1 text-indigo-300 dark:text-indigo-700 flex-shrink-0 print:w-3" />
+                        <span className="leading-tight">
+                          <strong className="text-gray-900 dark:text-gray-100 font-black print:font-bold">{ach.bold}</strong> {ach.text}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
 
-                    <ul className="space-y-4 print:space-y-1">
-                      {job.achievements.map((ach, i) => (
-                        <li key={i} className="flex gap-4 items-start text-gray-600 dark:text-gray-300 font-medium print:gap-2">
-                          <ChevronRight size={16} className="mt-1 text-indigo-300 dark:text-indigo-700 flex-shrink-0 print:w-3" />
-                          <span className="leading-tight">
-                            <strong className="text-gray-900 dark:text-gray-100 font-black print:font-bold">{ach.bold}</strong> {ach.text}
-                          </span>
-                        </li>
+          {/* Projects */}
+          <section id="projects" data-track="projects">
+            <div className="flex items-center gap-4 mb-10">
+              <div className="h-[2px] w-12 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+              <h3 className="text-xl font-black text-gray-900 dark:text-white uppercase tracking-widest flex items-center gap-3">
+                <Rocket className="text-blue-600 dark:text-blue-400" size={24} /> Artifacts
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 print:gap-4">
+              {cvData.projects.map((project, idx) => {
+                const CardWrapper = project.url ? 'a' : 'div';
+                const wrapperProps = project.url ? {
+                  href: project.url,
+                  target: "_blank",
+                  rel: "noreferrer",
+                  className: "group block bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 rounded-3xl p-8 print:p-4 shadow-lg dark:shadow-none hover:shadow-2xl dark:hover:border-indigo-900/50 hover:translate-y-[-8px] transition-all duration-500 relative overflow-hidden cursor-pointer",
+                  "data-track": `project-${idx}`
+                } : {
+                  className: "group block bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 rounded-3xl p-8 print:p-4 shadow-lg dark:shadow-none relative overflow-hidden",
+                  "data-track": `project-${idx}`
+                };
+
+                return (
+                  <CardWrapper key={idx} {...wrapperProps}>
+                    {project.url && (
+                      <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity print:hidden">
+                        <ExternalLink size={20} className="text-indigo-600" />
+                      </div>
+                    )}
+                    <h4 className="font-black text-xl text-gray-900 dark:text-white mb-4 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors print:text-base print:mb-1">
+                      {project.title}
+                    </h4>
+                    <p className="text-gray-500 dark:text-gray-400 mb-6 font-medium text-sm leading-relaxed print:text-xs print:mb-2">{project.desc}</p>
+                    <div className="flex flex-wrap gap-2 print:gap-1">
+                      {project.tags.map((tag, i) => (
+                        <span key={i} className="text-[10px] font-black uppercase tracking-wider px-3 py-1 bg-gray-50 dark:bg-slate-800/80 text-gray-500 dark:text-gray-400 rounded-lg group-hover:bg-indigo-50 dark:group-hover:bg-indigo-500/10 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors print:px-1 print:py-0.5 print:text-[8px]">
+                          {tag}
+                        </span>
                       ))}
-                    </ul>
-                  </article>
+                    </div>
+                  </CardWrapper>
+                );
+              })}
+            </div>
+          </section>
+          {/* Education & Languages - Combined in one row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 print:grid-cols-2 gap-8 print:gap-4">
+            <section className="bg-white dark:bg-slate-900 p-8 print:p-4 rounded-[2rem] shadow-lg dark:shadow-none border border-gray-50 dark:border-slate-800 print-card">
+              <h3 className="text-lg font-black text-gray-900 dark:text-white uppercase tracking-widest mb-6 print:mb-2 flex items-center gap-3 print:text-base">
+                <GraduationCap className="text-emerald-600 dark:text-emerald-400" size={20} /> Education
+              </h3>
+              <div className="space-y-4 print:space-y-1">
+                <h4 className="font-bold text-gray-900 dark:text-gray-100 leading-tight print:text-sm">{cvData.education.degree}</h4>
+                <div className="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider print:text-[10px]">{cvData.education.university}</div>
+                <time className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 px-2 py-1 bg-indigo-50 dark:bg-indigo-950/30 rounded-md print:bg-transparent print:p-0">{cvData.education.date}</time>
+              </div>
+            </section>
+
+            <section className="bg-white dark:bg-slate-900 p-8 print:p-4 rounded-[2rem] shadow-lg dark:shadow-none border border-gray-50 dark:border-slate-800 print-card">
+              <h3 className="text-lg font-black text-gray-900 dark:text-white uppercase tracking-widest mb-6 print:mb-2 flex items-center gap-3 print:text-base">
+                <Languages className="text-blue-600 dark:text-blue-400" size={20} /> Languages
+              </h3>
+              <div className="space-y-4 print:space-y-1">
+                {cvData.languages.map((lang, idx) => (
+                  <div key={idx} className="flex justify-between items-baseline">
+                    <span className="font-bold text-gray-800 dark:text-gray-200 print:text-sm">{lang.name}</span>
+                    <span className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest">{lang.level}</span>
+                  </div>
                 ))}
               </div>
             </section>
-
-            {/* Projects */}
-            <section id="projects" data-track="projects">
-              <div className="flex items-center gap-4 mb-10">
-                <div className="h-[2px] w-12 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
-                <h3 className="text-xl font-black text-gray-900 dark:text-white uppercase tracking-widest flex items-center gap-3">
-                  <Rocket className="text-blue-600 dark:text-blue-400" size={24} /> Artifacts
-                </h3>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 print:gap-4">
-                {cvData.projects.map((project, idx) => {
-                  const CardWrapper = project.url ? 'a' : 'div';
-                  const wrapperProps = project.url ? {
-                    href: project.url,
-                    target: "_blank",
-                    rel: "noreferrer",
-                    className: "group block bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 rounded-3xl p-8 print:p-4 shadow-lg dark:shadow-none hover:shadow-2xl dark:hover:border-indigo-900/50 hover:translate-y-[-8px] transition-all duration-500 relative overflow-hidden cursor-pointer",
-                    "data-track": `project-${idx}`
-                  } : {
-                    className: "group block bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 rounded-3xl p-8 print:p-4 shadow-lg dark:shadow-none relative overflow-hidden",
-                    "data-track": `project-${idx}`
-                  };
-
-                  return (
-                    <CardWrapper key={idx} {...wrapperProps}>
-                      {project.url && (
-                        <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity print:hidden">
-                          <ExternalLink size={20} className="text-indigo-600" />
-                        </div>
-                      )}
-                      <h4 className="font-black text-xl text-gray-900 dark:text-white mb-4 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors print:text-base print:mb-1">
-                        {project.title}
-                      </h4>
-                      <p className="text-gray-500 dark:text-gray-400 mb-6 font-medium text-sm leading-relaxed print:text-xs print:mb-2">{project.desc}</p>
-                      <div className="flex flex-wrap gap-2 print:gap-1">
-                        {project.tags.map((tag, i) => (
-                          <span key={i} className="text-[10px] font-black uppercase tracking-wider px-3 py-1 bg-gray-50 dark:bg-slate-800/80 text-gray-500 dark:text-gray-400 rounded-lg group-hover:bg-indigo-50 dark:group-hover:bg-indigo-500/10 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors print:px-1 print:py-0.5 print:text-[8px]">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </CardWrapper>
-                  );
-                })}
-              </div>
-            </section>
-            {/* Education & Languages - Combined in one row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 print:grid-cols-2 gap-8 print:gap-4">
-              <section className="bg-white dark:bg-slate-900 p-8 print:p-4 rounded-[2rem] shadow-lg dark:shadow-none border border-gray-50 dark:border-slate-800 print-card">
-                <h3 className="text-lg font-black text-gray-900 dark:text-white uppercase tracking-widest mb-6 print:mb-2 flex items-center gap-3 print:text-base">
-                  <GraduationCap className="text-emerald-600 dark:text-emerald-400" size={20} /> Education
-                </h3>
-                <div className="space-y-4 print:space-y-1">
-                  <h4 className="font-bold text-gray-900 dark:text-gray-100 leading-tight print:text-sm">{cvData.education.degree}</h4>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider print:text-[10px]">{cvData.education.university}</div>
-                  <time className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 px-2 py-1 bg-indigo-50 dark:bg-indigo-950/30 rounded-md print:bg-transparent print:p-0">{cvData.education.date}</time>
-                </div>
-              </section>
-
-              <section className="bg-white dark:bg-slate-900 p-8 print:p-4 rounded-[2rem] shadow-lg dark:shadow-none border border-gray-50 dark:border-slate-800 print-card">
-                <h3 className="text-lg font-black text-gray-900 dark:text-white uppercase tracking-widest mb-6 print:mb-2 flex items-center gap-3 print:text-base">
-                  <Languages className="text-blue-600 dark:text-blue-400" size={20} /> Languages
-                </h3>
-                <div className="space-y-4 print:space-y-1">
-                  {cvData.languages.map((lang, idx) => (
-                    <div key={idx} className="flex justify-between items-baseline">
-                      <span className="font-bold text-gray-800 dark:text-gray-200 print:text-sm">{lang.name}</span>
-                      <span className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest">{lang.level}</span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            </div>
+          </div>
         </div>
 
         {/* Contact Form */}
