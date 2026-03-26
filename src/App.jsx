@@ -3,8 +3,6 @@ import {
   Printer,
   Mail,
   MapPin,
-  Linkedin,
-  Github,
   User,
   Brain,
   Network,
@@ -24,8 +22,10 @@ import {
   EyeOff,
   Sun,
   Moon,
-  ChevronDown
+  ChevronDown,
+  Globe
 } from 'lucide-react';
+import { siGithub, siLinkedin } from 'simple-icons';
 import { initAnalytics } from './analytics';
 import ScrollBicyclist from './components/ScrollBicyclist';
 
@@ -42,6 +42,7 @@ const cvData = {
     github: "github.com/ingvar-soloma",
     logo: "/cv_logo.png",
     favicon: "/favicon.png",
+    blog: "ingvarsoloma.dev",
     badges: [
       { text: "B2B / IE", color: "indigo" },
       { text: "Rate: $40/hr", color: "emerald" },
@@ -142,7 +143,7 @@ const cvData = {
       title: "NP42 | Neuro Profile",
       desc: "Interactive tool mapping engineering cognitive styles. Integrating a RAG pipeline to deliver personalized, context-aware workflow recommendations. Utilized within the team to optimize communication and task delegation based on individual thinking patterns.",
       url: "https://np42.dev/",
-      tags: ["AI", "React", "RAG Pipelines", "Team Analytics"]
+      tags: ["AI", "React", "RAG Pipelines", "Team Analytics"] 
     },
     {
       title: "EdTech Spaced Repetition Platform",
@@ -173,6 +174,24 @@ const cvData = {
     { name: "Russian", level: "Native" }
   ]
 };
+
+// ==========================================
+// BRAND ICONS HELPER
+// ==========================================
+const BrandIcon = ({ icon, size = 24, className = "" }) => (
+  <svg
+    role="img"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    width={size}
+    height={size}
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title>{icon.title}</title>
+    <path d={icon.path} />
+  </svg>
+);
 
 
 export default function App() {
@@ -295,6 +314,16 @@ export default function App() {
             </div>
 
             <a
+              href={`https://${cvData.header.blog}`}
+              target="_blank"
+              rel="noopener"
+              className="hidden sm:flex items-center gap-2 text-sm font-semibold text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all font-inter"
+              data-track="nav-blog"
+            >
+              <Globe size={18} />
+              <span>Blog</span>
+            </a>
+            <a
               href="#projects"
               className="hidden sm:flex items-center gap-2 text-sm font-semibold text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all font-inter"
               data-track="nav-projects"
@@ -360,12 +389,16 @@ export default function App() {
                 <a href={`mailto:${cvData.header.email}`} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">{cvData.header.email}</a>
               </div>
               <div className="flex items-center gap-2.5 group" data-track="contact-linkedin">
-                <div className="p-2 bg-white dark:bg-slate-900 rounded-lg shadow-sm border border-gray-100 dark:border-slate-800 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors print:p-0 print:border-none"><Linkedin size={16} className="print:w-3" /></div>
-                <a href={`https://${cvData.header.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">{cvData.header.linkedin}</a>
+                <div className="p-2 bg-white dark:bg-slate-900 rounded-lg shadow-sm border border-gray-100 dark:border-slate-800 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors print:p-0 print:border-none"><BrandIcon icon={siLinkedin} size={16} className="print:w-3" /></div>
+                <a href={`https://${cvData.header.linkedin}`} target="_blank" rel="noopener" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">{cvData.header.linkedin}</a>
               </div>
               <div className="flex items-center gap-2.5 group" data-track="contact-github">
-                <div className="p-2 bg-white dark:bg-slate-900 rounded-lg shadow-sm border border-gray-100 dark:border-slate-800 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors print:p-0 print:border-none"><Github size={16} className="print:w-3" /></div>
-                <a href={`https://${cvData.header.github}`} target="_blank" rel="noreferrer" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">{cvData.header.github}</a>
+                <div className="p-2 bg-white dark:bg-slate-900 rounded-lg shadow-sm border border-gray-100 dark:border-slate-800 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors print:p-0 print:border-none"><BrandIcon icon={siGithub} size={16} className="print:w-3" /></div>
+                <a href={`https://${cvData.header.github}`} target="_blank" rel="noopener" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">{cvData.header.github}</a>
+              </div>
+              <div className="flex items-center gap-2.5 group" data-track="contact-blog">
+                <div className="p-2 bg-white dark:bg-slate-900 rounded-lg shadow-sm border border-gray-100 dark:border-slate-800 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors print:p-0 print:border-none"><Globe size={16} className="print:w-3" /></div>
+                <a href={`https://${cvData.header.blog}`} target="_blank" rel="noopener" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">{cvData.header.blog}</a>
               </div>
             </address>
           </div>
@@ -513,7 +546,7 @@ export default function App() {
                 const wrapperProps = project.url ? {
                   href: project.url,
                   target: "_blank",
-                  rel: "noreferrer",
+                  rel: "noopener",
                   className: "group block bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 rounded-3xl p-8 print:p-4 shadow-lg dark:shadow-none hover:shadow-2xl dark:hover:border-indigo-900/50 hover:translate-y-[-8px] transition-all duration-500 relative overflow-hidden cursor-pointer",
                   "data-track": `project-${idx}`
                 } : {
@@ -589,7 +622,7 @@ export default function App() {
                 <a href={`mailto:${cvData.header.email}`} className="bg-white text-indigo-600 px-10 py-5 rounded-2xl font-black text-lg shadow-xl hover:scale-105 active:scale-95 transition-all">
                   Write to me
                 </a>
-                <a href={`https://${cvData.header.linkedin}`} target="_blank" rel="noreferrer" className="bg-indigo-700/50 backdrop-blur-md text-white border border-indigo-400/30 px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all">
+                <a href={`https://${cvData.header.linkedin}`} target="_blank" rel="noopener" className="bg-indigo-700/50 backdrop-blur-md text-white border border-indigo-400/30 px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all">
                   LinkedIn
                 </a>
               </div>
