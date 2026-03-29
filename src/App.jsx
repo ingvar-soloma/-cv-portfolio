@@ -50,7 +50,7 @@ const cvData = {
     linkedin: "linkedin.com/in/ingvar-soloma",
     github: "github.com/ingvar-soloma",
     logo: "/cv_logo.png",
-    favicon: "/favicon.png",
+    favicon: "/favicon.svg",
     blog: "ingvarsoloma.dev",
     badges: [
       { text: "B2B / IE", color: "indigo" },
@@ -264,7 +264,7 @@ export default function App() {
       <nav className="fixed w-full bg-white/70 dark:bg-slate-900/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-slate-800/50 z-50 print:hidden transition-colors duration-500">
 
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#" className="flex items-center gap-3 transition-transform hover:scale-105 active:scale-95" data-track="nav-home">
+          <a href="#" aria-label="Home" className="flex items-center gap-3 transition-transform hover:scale-105 active:scale-95" data-track="nav-home">
             {/* Explicit width/height attributes prevent nav logo from causing CLS */}
             <img src={cvData.header.favicon} alt="Ihor Solomianyi - Senior Software Engineer Logo" width="32" height="32" className="h-8 w-8 aspect-square object-cover rounded shadow-sm border border-gray-100 dark:border-slate-800" />
             <span className="font-bold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-100 dark:to-gray-400 border-l border-gray-300 dark:border-gray-700 pl-3">IS.dev</span>
@@ -273,6 +273,7 @@ export default function App() {
             <div className="relative group/settings">
               <button
                 onClick={() => setShowSettings(!showSettings)}
+                aria-label="Open Settings"
                 className={`flex items-center gap-1 p-2 rounded-xl transition-all ${showSettings ? 'bg-gray-100 dark:bg-slate-800 text-indigo-600' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-800/50'}`}
               >
                 <Settings size={20} className={showSettings ? 'rotate-90 transition-transform' : ''} />
@@ -343,6 +344,7 @@ export default function App() {
             </a>
             <button
               onClick={() => window.print()}
+              aria-label="Print to PDF"
               className="flex items-center gap-2 text-sm font-semibold text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
               data-track="nav-print"
             >
@@ -476,7 +478,7 @@ export default function App() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 print:gap-4">
               {Object.entries(cvData.skills).map(([category, items], idx) => (
                 <div key={idx} className="print:break-inside-avoid">
-                  <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4 print:mb-1">{category}</h4>
+                  <h4 className="text-[10px] font-black text-gray-500 dark:text-gray-300 uppercase tracking-[0.2em] mb-4 print:mb-1">{category}</h4>
                   <div className="flex flex-wrap gap-2 print:gap-1">
                     {items.map((skill, i) => {
                       const isAi = category === "Data & AI";
