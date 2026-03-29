@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+/* ─── Font-display: swap override ─────────────────────────────────────────
+   Google Fonts URL already contains &display=swap, but this local override
+   guarantees swap behaviour even if the external stylesheet is delayed or
+   blocked (e.g. DNS cold-start). Without swap the browser hides text
+   (FOIT) until the webfont arrives, then causes a text-reflow CLS.
+   ─────────────────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: local('Inter');
+}
+
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
