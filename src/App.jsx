@@ -417,7 +417,7 @@ export default function App() {
             <div className="absolute inset-0 bg-indigo-600/5 dark:bg-indigo-500/10 rounded-[3rem] rotate-3 group-hover:rotate-6 transition-transform duration-700 border border-indigo-100 dark:border-indigo-900/30 print:hidden"></div>
             
             <div className="relative z-10 w-full h-full rounded-[3rem] border-4 border-white dark:border-slate-800 shadow-2xl overflow-hidden transition-all duration-500 group-hover:translate-y-[-8px] print:border-none print:shadow-none">
-              <img src={cvData.header.logo} alt="Ihor Solomianyi" width="256" height="256" className="w-full h-full aspect-square object-cover" />
+              <img src={cvData.header.logo} alt="Ihor Solomianyi" width="256" height="256" fetchpriority="high" loading="eager" className="w-full h-full aspect-square object-cover" />
             </div>
           </div>
         </header>

@@ -1,0 +1,43 @@
+# ─── Caching strategy for cv-portfolio ────────────────────────────────────────
+# This file is for Cloudflare Pages & Netlify. For other hosts see nginx.conf.
+#
+# Principle:
+#  - Hashed assets (/assets/*.js, /assets/*.css) → immutable (1 year)
+#    Vite appends a content-hash to every chunk, so a new deploy always
+#    produces a new URL. Immutable caching eliminates ALL re-validation
+#    requests for returning visitors.
+#  - HTML entry-points → no cache (always fresh)
+#    index.html contains the script tags pointing to the hashed chunks.
+#    Must be uncached so users get the latest chunk URLs immediately.
+#  - Static assets with stable names (images, fonts, robots) → 7 days
+# ──────────────────────────────────────────────────────────────────────────────
+
+# HTML — always revalidate
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Hashed JS/CSS bundles — immutable for 1 year
+/assets/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+# Static images referenced by name (not hashed)
+# 7-day TTL — long enough to not re-fetch on every visit, short enough to
+# propagate updates after a deploy.
+/*.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/*.svg
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# SEO / crawl files — 1 hour
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+
+/robots.txt
+  Cache-Control: public, max-age=3600

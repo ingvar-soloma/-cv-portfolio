@@ -1,11 +1,28 @@
 @import "tailwindcss";
 
-/* ─── Font-display: swap override ─────────────────────────────────────────
-   Google Fonts URL already contains &display=swap, but this local override
-   guarantees swap behaviour even if the external stylesheet is delayed or
-   blocked (e.g. DNS cold-start). Without swap the browser hides text
-   (FOIT) until the webfont arrives, then causes a text-reflow CLS.
+/* ─── Font Metric Override — eliminate FOUT / CLS from webfont swap ───────
+   Goal: the system-ui fallback must occupy identical pixel space to Inter.
+   When Inter loads and swaps in (FOUT), zero layout shift occurs because
+   the line heights, ascenders, and descenders match the fallback metrics.
+
+   Values derived from: https://screenspan.net/fallback
+   Calibrated for: Inter (Google Fonts) ↔ system-ui / Arial fallback
    ─────────────────────────────────────────────────────────────────────── */
+
+/* Step 1 — declare the *fallback* @font-face with adjusted metrics */
+@font-face {
+  font-family: 'InterFallback';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: local('Arial');           /* reliable cross-platform fallback */
+  size-adjust: 107%;             /* scale Arial up to match Inter's cap-height */
+  ascent-override: 90%;          /* pull ascenders closer to Inter baseline */
+  descent-override: 22%;         /* match Inter descenders */
+  line-gap-override: 0%;         /* Inter has no line-gap */
+}
+
+/* Step 2 — the real Inter @font-face with swap + local() fast-path */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -22,7 +39,7 @@
 }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, InterFallback, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 

@@ -45,6 +45,14 @@
     ]
   }
   </script>
+  <!-- ─ Priority Hints: preload the LCP image before JS executes ──────────
+       cv_logo.png is the Largest Contentful Paint element on desktop.
+       Preloading it during HTML parse eliminates the waterfall delay between
+       JS bundle execution → React render → image discovery.
+       ──────────────────────────────────────────────────────────────────── -->
+  <link rel="preload" href="/cv_logo.png" as="image" fetchpriority="high" />
+
+  <!-- Google Fonts — preconnect both domains for parallel TLS handshakes  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
