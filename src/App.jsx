@@ -36,7 +36,8 @@ const siGithub = {
   path: 'M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12',
 };
 import { initAnalytics } from './analytics';
-import ScrollBicyclist from './components/ScrollBicyclist';
+
+const ScrollBicyclist = React.lazy(() => import('./components/ScrollBicyclist'));
 
 // ==========================================
 // ДАНІ CV
@@ -45,7 +46,7 @@ const cvData = {
   header: {
     name: "Ihor Solomianyi",
     title: "Architect & Software Engineer",
-    location: "Gdansk, Poland",
+    location: "Wrocław, Poland",
     email: "ingvar.soloma@gmail.com",
     linkedin: "linkedin.com/in/ingvar-soloma",
     github: "github.com/ingvar-soloma",
@@ -250,7 +251,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen w-full bg-[#fafafa] dark:bg-slate-900 text-gray-900 dark:text-gray-100 font-sans antialiased selection:bg-indigo-600 selection:text-white scroll-smooth overflow-x-hidden transition-colors duration-500">
-      <ScrollBicyclist isVisible={isBicyclistVisible} />
+      <React.Suspense fallback={null}>
+        <ScrollBicyclist isVisible={isBicyclistVisible} />
+      </React.Suspense>
 
 
       {/* Background patterns */}
@@ -353,6 +356,7 @@ export default function App() {
             </button>
             <a
               href="#contact"
+              aria-label="Contact me"
               className="group flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-indigo-500/20 transition-all hover:translate-y-[-2px] active:translate-y-0"
               data-track="nav-contact"
             >
@@ -417,7 +421,7 @@ export default function App() {
           <div className="hidden md:block w-64 h-64 print:w-24 print:h-24 relative group">
             {/* Aesthetic Rotation Background */}
             <div className="absolute inset-0 bg-indigo-600/5 dark:bg-indigo-500/10 rounded-[3rem] rotate-3 group-hover:rotate-6 transition-transform duration-700 border border-indigo-100 dark:border-indigo-900/30 print:hidden"></div>
-            
+
             <div className="relative z-10 w-full h-full rounded-[3rem] border-4 border-white dark:border-slate-800 shadow-2xl overflow-hidden transition-all duration-500 group-hover:translate-y-[-8px] print:border-none print:shadow-none">
               <img src={cvData.header.logo} alt="Ihor Solomianyi" width="256" height="256" fetchpriority="high" loading="eager" className="w-full h-full aspect-square object-cover" />
             </div>
@@ -519,7 +523,7 @@ export default function App() {
                   <header className="mb-6 print:mb-2">
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-2 print:mb-1">
                       <h4 className="text-2xl font-black text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors uppercase tracking-tight print:text-base">{job.role}</h4>
-                      <time className={`text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-full ${idx === 0 ? 'bg-indigo-600 dark:bg-indigo-500 text-white' : 'bg-gray-100 dark:bg-slate-800 text-gray-500'} print:bg-transparent print:text-gray-400 print:px-0 print:py-0`}>
+                      <time className={`text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-full ${idx === 0 ? 'bg-indigo-600 dark:bg-indigo-500 text-white' : 'bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-300'} print:bg-transparent print:text-gray-400 print:px-0 print:py-0`}>
                         {job.date}
                       </time>
                     </div>
@@ -611,7 +615,7 @@ export default function App() {
                 {cvData.languages.map((lang, idx) => (
                   <div key={idx} className="flex justify-between items-baseline">
                     <span className="font-bold text-gray-800 dark:text-gray-200 print:text-sm">{lang.name}</span>
-                    <span className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest">{lang.level}</span>
+                    <span className="text-[10px] font-black text-gray-600 dark:text-gray-400 uppercase tracking-widest">{lang.level}</span>
                   </div>
                 ))}
               </div>
